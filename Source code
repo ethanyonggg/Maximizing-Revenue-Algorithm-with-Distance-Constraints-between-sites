@@ -74,5 +74,25 @@ def restaurantFinder(d, site_list):
             output_list.insert(0, previous_track)
 
     # return the tuple in the according format (total_revenue, output_list)
-    return site_memo[-1], output_list
+    return "The selected restaurant sites that maximises revenue are: " + str(output_list) + "\n" "With a revenue of: " + str(site_memo[-1]) + "$"
+
+if __name__ == '__main__':
+     #Test case #1 selecting restaurants that are not adjacent to one another that maximises revenue
+     print(restaurantFinder(1,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+
+     #Test case #2 selecting restaurants that are two sites apart from one another that maximises revenue
+     print(restaurantFinder(2,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+
+     #Test case #3 selecting restaurants that are three sites apart from one another that maximises revenue
+     print(restaurantFinder(3,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+
+     #Test case #4 selecting restaurants that are seven sites apart from one another that maximises revenue
+     print(restaurantFinder(7,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+
+     #Test case #5 selecting restaurants that are next to each other that maximises revenue
+     print(restaurantFinder(0,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+
+     
+
+
     
