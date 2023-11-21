@@ -1,9 +1,8 @@
 from math import sqrt
 
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
+# Instuctions:
+#  - Uncomment the test cases below from line 78 onwards and run the file to test the function
+#  - Comment out the pass function to run the code
 
 def restaurantFinder(d, site_list):
     """
@@ -78,21 +77,17 @@ def restaurantFinder(d, site_list):
 
 if __name__ == '__main__':
      #Test case #1 selecting restaurants that are not adjacent to one another that maximises revenue
-     print(restaurantFinder(1,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+     # print(restaurantFinder(1,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
 
      #Test case #2 selecting restaurants that are two sites apart from one another that maximises revenue
-     print(restaurantFinder(2,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+     #  print(restaurantFinder(2,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
 
      #Test case #3 selecting restaurants that are three sites apart from one another that maximises revenue
-     print(restaurantFinder(3,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+     #  print(restaurantFinder(3,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
 
      #Test case #4 selecting restaurants that are seven sites apart from one another that maximises revenue
-     print(restaurantFinder(7,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+     #  print(restaurantFinder(7,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
 
      #Test case #5 selecting restaurants that are next to each other that maximises revenue
-     print(restaurantFinder(0,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
-
-     
-
-
-    
+     #  print(restaurantFinder(0,[50, 10, 12, 65, 40, 95, 100, 12, 20, 30]))
+     pass
