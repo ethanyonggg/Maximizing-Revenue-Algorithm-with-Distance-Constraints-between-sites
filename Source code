@@ -1,1 +1,78 @@
+from math import sqrt
 
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+
+def restaurantFinder(d, site_list):
+    """
+    Function description :
+    This functions finds the maximum total sum value of the annual revenue's of neighbouring restaurants that is
+    separated based on the d value.
+
+    Approach description:
+    This function uses concepts of dynamic programming which uses the bottom-up approach meaning the function is coded
+    iteratively instead of recursively. This function uses the back_tracking list to store the back_track index of
+    restaurant that are included in the sum of the maximum total_revenue. There are only two cases for this function
+    which are represented using if-functions. 1st case: memo(i-d+1) + h(i) >= memo(i-1), 2nd case: memo(i-1) >
+    memo(i-d+1) + h(i). The first case is the conditions needed to include since the neighbouring restaurant seperated
+    by distance d produces a higher maximum revneue compared to the previous restaurant. The second case is the
+    exact opposite and thus decides to excludes the current resutaurant and the revenue is not added into the max_revenue
+
+    :param d: the distance in between each restaurant that is needed in order to be included int the maximum revenue
+    :param site_list: the list of restaurants denoted by their revenues
+    :return: a tuple containing the maximum total revenue fllowed by a list of restaurants arranged accordingly that
+            has its revenue included
+
+    time complexity: O(N) iterates through the entire site_list once while building its back_track list
+    space complexity: O(N) for the site_memo list and O(N) for the site_back_track list, O(N) + O(N) = O(2N) = O(N)
+    """
+    # initialise memo_list to keep track of maximum sum of revenue at each site
+    site_memo = (len(site_list) + 1) * [0]
+    # initialise site_back_track which is a back track list to keep track of the previous index that is included in each
+    # site
+    site_back_track = (len(site_list) + 1) * [0]
+    # output list to be returned
+    output_list = []
+
+    # loops through the entire site list
+    for sites in range(len(site_list)):
+        # index of the neighbouring site of the current index
+        last_site = sites - d - 1
+
+        # if the index of the neighbouring site's revenue is more than the previous site's revenue, we include the
+        # current site's revenue and add it to the total sum
+        if site_list[sites] + site_memo[last_site + 1] >= site_memo[sites]:
+            # stores the sum of the new sum value in the current index of the memo list
+            site_memo[sites + 1] = site_list[sites] + site_memo[last_site + 1]
+            # updates the back track value to the last site
+            back_track = last_site + 1
+            # edge case to account for first few sites that is lesser than d and has no neibouring sites thus back
+            # track is set to 0
+            if back_track < 0:
+                back_track = 0
+        # choose to exclude since previous site is more than current_site
+        else:
+            # stores current maximum revenue into the current index's memo list
+            site_memo[sites + 1] = site_memo[sites]
+            # updates the back track value to the previous index's back_track
+            back_track = sites
+        # stores the back_track into the current index's back track list
+        site_back_track[sites + 1] = back_track
+
+    # back_track_index finds the maximum revenue's back track index
+    back_track_index = len(site_back_track) - 1
+    # while the base case is not reached
+    while back_track_index != 0:
+        previous_track = back_track_index
+        # finds the back track index of the current index in the back track list
+        back_track_index = site_back_track[back_track_index]
+        # if the value of the back track index in the memo is different means the value has been added to the sum thus
+        # the back track index is recorded and added into the output list
+        if site_memo[back_track_index] != site_memo[previous_track]:
+            output_list.insert(0, previous_track)
+
+    # return the tuple in the according format (total_revenue, output_list)
+    return site_memo[-1], output_list
+    
